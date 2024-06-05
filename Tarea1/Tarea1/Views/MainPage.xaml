@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tarea1.MainPage">
+
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame BackgroundColor="Red" Padding="24" CornerRadius="0" Margin="0,0,0,20">
+                    <Label Text="Calculadora" HorizontalTextAlignment="Center" TextColor="White"/>
+                </Frame>
+                <StackLayout Spacing="15">
+                    <Label Text="NUMERO 1" FontSize="Title" Grid.Row="1"/>
+                    <Entry x:Name="numero1" Keyboard="Numeric" Placeholder="Ingrese número 1" Grid.Row="2"/>
+
+                    <Label Text="NUMERO 2" FontSize="Title" Grid.Row="3"/>
+                    <Entry x:Name="numero2" Keyboard="Numeric" Placeholder="Ingrese número 2" Grid.Row="4"/>
+
+                    <Label Text="SELECCIONE OPERACIÓN" FontSize="Title" Grid.Row="5"/>
+                    <Picker x:Name="operationPicker" Grid.Row="6">
+                        <Picker.Items>
+                            <x:String>Sumar</x:String>
+                            <x:String>Restar</x:String>
+                            <x:String>Multiplicar</x:String>
+                            <x:String>Dividir</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+                <Button Text="CALCULAR" Grid.Row="7" Clicked="BtnCalcular_Clicked"/>
+                <Label x:Name="resultadoLabel" FontSize="Title" Grid.Row="8"/>
+                <StackLayout>
+                    <Frame BackgroundColor="Red" Padding="24" CornerRadius="0" Margin="0,0,0,20">
+                        <Label Text="Lista de operaciones" HorizontalTextAlignment="Center" TextColor="White"/>
+                    </Frame>
+                    <!-- Tabla de encabezado -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="140"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="N1" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center"/>
+                        <Label Text="N2" FontAttributes="Bold" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center"/>
+                        <Label Text="Op" FontAttributes="Bold" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center"/>
+                        <Label Text="T" FontAttributes="Bold" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center"/>
+                        <Label Text="F" FontAttributes="Bold" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center"/>
+                    </Grid>
+                    <ScrollView>
+                        <ListView x:Name="OperacionesListView" ItemSelected="OnItemSelected">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding numero1}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center"/>
+                                            <Label Text="{Binding numero2}" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center"/>
+                                            <Label Text="{Binding operacion}" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center"/>
+                                            <Label Text="{Binding total}" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center"/>
+                                            <Label Text="{Binding fechaRegistro}" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center"/>
+                                            <Button Text="DL" Clicked="OnDeleteButtonClicked" Grid.Row="0" Grid.Column="5"/>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollView>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>
